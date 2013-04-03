@@ -206,7 +206,8 @@ public class draw implements Runnable {
 	//	hiBarPanel1.bubblestep();
 		
 		hiBarPanel2.setData(unsorted2);
-	//	hiBarPanel2.insertStep();
+	 	hiBarPanel2.insert.insertstep(unsorted2);
+	 	
     	
     }
     public static int[] getdata(int type)
@@ -351,12 +352,43 @@ public class draw implements Runnable {
 	   }
 	 
  }
+ class Insert{
+		public int[] data;
+		 int pos1=1,hole=1;
+		 int temp,temp2;
+		 Insert(int[] unsort){
+			  data=unsort;
+			  
+		 }
+		 
+		   void insertstep(int[] data){
+			   temp=data[pos1];
+			   hole=pos1;
+			   System.out.print("pos1 is " +pos1+ " hole "+hole );
+			   if(hole> 0 && data[hole-1]>data[hole] )
+			   {
+				   temp2=data[hole];
+				   data[hole]=data[hole-1];
+				  
+				   data[hole-1]=temp2;
+				    hole--;
+			   }
+			   else if(data[hole-1 ]<data[hole])
+			   {
+				   //data[hole]=temp;
+				   pos1++;
+			   }
+			   //else if()
+				 
+		   }
+ }
 class HiBarPanel extends JPanel {
      
     int maxValue = 10;
     final int PAD = 30;
    int[]  data; 
     Bubble bub= new Bubble(data);
+    Insert insert= new Insert(data);
    void fillbubble(){
 	   bub.bubblestep(bub.data);
    
